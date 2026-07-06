@@ -1,0 +1,6 @@
+out_result_dir = "/data/data6/vijay/sparsity_capsule/results/cremi_clefts/pgt/cremi_clefts.zarr/3Af2A/25000--from--2d_mtlsd_10000"
+out_result = "/data/data6/vijay/sparsity_capsule/results/cremi_clefts/pgt/cremi_clefts.zarr/3Af2A/25000--from--2d_mtlsd_10000/results_gt_cremi_clefts.json"
+seg_datasets_prefix = "/data/data6/vijay/sparsity_capsule/results/cremi_clefts/pgt/cremi_clefts.zarr/3Af2A/25000--from--2d_mtlsd_10000/segmentations_mws"
+
+[gt]
+labels_dataset = "/data/data6/vijay/sparsity_capsule/data/cremi_clefts/volume_1.zarr/labels"

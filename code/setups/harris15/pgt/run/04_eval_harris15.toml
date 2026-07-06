@@ -1,0 +1,7 @@
+out_result_dir = "/data/data6/vijay/sparsity_capsule/results/harris15/pgt/harris15.zarr/3Af2A/25000--from--2d_mtlsd_40000"
+out_result = "/data/data6/vijay/sparsity_capsule/results/harris15/pgt/harris15.zarr/3Af2A/25000--from--2d_mtlsd_40000/results_gt_harris15.json"
+seg_datasets_prefix = "/data/data6/vijay/sparsity_capsule/results/harris15/pgt/harris15.zarr/3Af2A/25000--from--2d_mtlsd_40000/segmentations_mws"
+mask_dataset = "/data/data6/vijay/sparsity_capsule/data/harris15/volume_2.zarr/labels_mask"
+
+[gt]
+labels_dataset = "/data/data6/vijay/sparsity_capsule/data/harris15/volume_2.zarr/labels"

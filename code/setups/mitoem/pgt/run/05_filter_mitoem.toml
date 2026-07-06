@@ -1,0 +1,9 @@
+seg_datasets_prefix = "/data/data6/vijay/sparsity_capsule/results/mitoem/pgt/mitoem.zarr/3Af2A/25000--from--2d_mtlsd_20000/segmentations_mws"
+eval_dir = "/data/data6/vijay/sparsity_capsule/results/mitoem/pgt/mitoem.zarr/3Af2A/25000--from--2d_mtlsd_20000"
+out_seg_dataset_prefix = "/data/data6/vijay/sparsity_capsule/results/mitoem/pgt/mitoem.zarr/3Af2A/25000--from--2d_mtlsd_20000/pseudo_gt_ids_mws"
+out_mask_dataset_prefix = "/data/data6/vijay/sparsity_capsule/results/mitoem/pgt/mitoem.zarr/3Af2A/25000--from--2d_mtlsd_20000/pseudo_gt_mask_mws"
+dust_filter = 500
+remove_outliers = true
+remove_z_fragments = 10
+overlap_filter = 0.0
+erode_out_mask = false

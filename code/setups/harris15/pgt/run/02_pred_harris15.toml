@@ -1,0 +1,21 @@
+[01-2d_mtlsd]
+setup_dir = "/data/data6/vijay/sparsity_capsule/results/harris15/pgt/2d_mtlsd"
+input_datasets = [ "/data/data6/vijay/sparsity_capsule/data/harris15/volume_2.zarr/raw",]
+roi_offset = [ 0, 0, 0,]
+roi_shape = [ 4550, 11504, 12024,]
+checkpoint = "/data/data6/vijay/sparsity_capsule/results/harris15/pgt/2d_mtlsd/model_checkpoint_40000"
+output_datasets_prefix = "/data/data6/vijay/sparsity_capsule/results/harris15/pgt/harris15.zarr/2d_mtlsd"
+chain_str = ""
+num_workers = 1
+num_gpus = 1
+
+[02-3Af2A]
+setup_dir = "/data/data6/vijay/sparsity_capsule/code/nets/3d_affs_from_2d_aff_6ch"
+input_datasets = [ "/data/data6/vijay/sparsity_capsule/results/harris15/pgt/harris15.zarr/2d_mtlsd/40000/2d_affs",]
+roi_offset = [ 0, 0, 0,]
+roi_shape = [ 4550, 11504, 12024,]
+checkpoint = "/data/data6/vijay/sparsity_capsule/code/nets/3d_affs_from_2d_aff_6ch/model_checkpoint_25000"
+output_datasets_prefix = "/data/data6/vijay/sparsity_capsule/results/harris15/pgt/harris15.zarr/3Af2A"
+chain_str = "2d_mtlsd_40000"
+num_workers = 1
+num_gpus = 1

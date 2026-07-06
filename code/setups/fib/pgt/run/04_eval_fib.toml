@@ -1,0 +1,6 @@
+out_result_dir = "/data/data6/vijay/sparsity_capsule/results/fib/pgt/fib.zarr/3Af2M/25000--from--2d_mtlsd_20000"
+out_result = "/data/data6/vijay/sparsity_capsule/results/fib/pgt/fib.zarr/3Af2M/25000--from--2d_mtlsd_20000/results_gt_fib.json"
+seg_datasets_prefix = "/data/data6/vijay/sparsity_capsule/results/fib/pgt/fib.zarr/3Af2M/25000--from--2d_mtlsd_20000/segmentations_mws"
+
+[gt]
+labels_dataset = "/data/data6/vijay/sparsity_capsule/data/fib/volume_2.zarr/labels"

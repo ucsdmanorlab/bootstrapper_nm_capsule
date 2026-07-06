@@ -1,0 +1,6 @@
+out_result_dir = "/data/data6/vijay/sparsity_capsule/results/prism/pgt/prism.zarr/3Af2A/25000--from--2d_mtlsd_20000"
+out_result = "/data/data6/vijay/sparsity_capsule/results/prism/pgt/prism.zarr/3Af2A/25000--from--2d_mtlsd_20000/results_gt_prism.json"
+seg_datasets_prefix = "/data/data6/vijay/sparsity_capsule/results/prism/pgt/prism.zarr/3Af2A/25000--from--2d_mtlsd_20000/segmentations_mws"
+
+[gt]
+labels_dataset = "/data/data6/vijay/sparsity_capsule/data/prism/volume_1.zarr/labels"

@@ -1,0 +1,11 @@
+affs_dataset = "/data/data6/vijay/sparsity_capsule/results/epi/bootstrap/epi.zarr/3d_mtlsd/50000/3d_affs"
+fragments_dataset = "/data/data6/vijay/sparsity_capsule/results/epi/bootstrap/epi.zarr/3d_mtlsd/50000/fragments_ws_mean"
+seg_dataset_prefix = "/data/data6/vijay/sparsity_capsule/results/epi/bootstrap/epi.zarr/3d_mtlsd/50000/segmentations_mws"
+blockwise = false
+num_workers = 1
+
+[ws_params]
+merge_function = "mean"
+thresholds = [ 0.1,]
+min_seed_distance = 10
+fragments_in_xy = true

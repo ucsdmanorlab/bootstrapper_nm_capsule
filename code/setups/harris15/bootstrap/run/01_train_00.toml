@@ -1,0 +1,10 @@
+setup_dir = "/data/data6/vijay/sparsity_capsule/results/harris15/bootstrap/3d_mtlsd"
+voxel_size = [ 50, 8, 8,]
+max_iterations = 60000
+save_checkpoints_every = 5000
+save_snapshots_every = 5000
+[[samples]]
+raw = "/data/data6/vijay/sparsity_capsule/data/harris15/volume_2.zarr/raw"
+labels = "/data/data6/vijay/sparsity_capsule/results/harris15/pgt/harris15.zarr/3Af2A/25000--from--2d_mtlsd_40000/pseudo_gt_ids_mws/eps0.001--bias-0.5_-0.5_-0.5_-0.8_-0.8_-0.8_-0.8_-0.8_-0.8--strides1_1_1_1_1_1_2_2_2--rm64"
+mask = "/data/data6/vijay/sparsity_capsule/results/harris15/pgt/harris15.zarr/3Af2A/25000--from--2d_mtlsd_40000/pseudo_gt_mask_mws/eps0.001--bias-0.5_-0.5_-0.5_-0.8_-0.8_-0.8_-0.8_-0.8_-0.8--strides1_1_1_1_1_1_2_2_2--rm64"
+

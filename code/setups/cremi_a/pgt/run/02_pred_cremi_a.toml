@@ -1,0 +1,21 @@
+[01-2d_mtlsd]
+setup_dir = "/data/data6/vijay/sparsity_capsule/results/cremi_a/pgt/2d_mtlsd"
+input_datasets = [ "/data/data6/vijay/sparsity_capsule/data/cremi_a/volume_2.zarr/raw",]
+roi_offset = [ 0, 0, 0,]
+roi_shape = [ 2480, 5000, 5000,]
+checkpoint = "/data/data6/vijay/sparsity_capsule/results/cremi_a/pgt/2d_mtlsd/model_checkpoint_20000"
+output_datasets_prefix = "/data/data6/vijay/sparsity_capsule/results/cremi_a/pgt/cremi_a.zarr/2d_mtlsd"
+chain_str = ""
+num_workers = 1
+num_gpus = 1
+
+[02-3Af2M]
+setup_dir = "/data/data6/vijay/sparsity_capsule/code/nets/3d_affs_from_2d_mtlsd"
+input_datasets = [ "/data/data6/vijay/sparsity_capsule/results/cremi_a/pgt/cremi_a.zarr/2d_mtlsd/20000/2d_lsds", "/data/data6/vijay/sparsity_capsule/results/cremi_a/pgt/cremi_a.zarr/2d_mtlsd/20000/2d_affs",]
+roi_offset = [ 0, 0, 0,]
+roi_shape = [ 2480, 5000, 5000,]
+checkpoint = "/data/data6/vijay/sparsity_capsule/code/nets/3d_affs_from_2d_mtlsd/model_checkpoint_25000"
+output_datasets_prefix = "/data/data6/vijay/sparsity_capsule/results/cremi_a/pgt/cremi_a.zarr/3Af2M"
+chain_str = "2d_mtlsd_20000"
+num_workers = 1
+num_gpus = 1

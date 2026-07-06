@@ -1,0 +1,10 @@
+setup_dir = "/data/data6/vijay/sparsity_capsule/results/prism/pgt/2d_mtlsd"
+voxel_size = [ 400, 168, 168,]
+max_iterations = 20000
+save_checkpoints_every = 5000
+save_snapshots_every = 5000
+[[samples]]
+raw = "/data/data6/vijay/sparsity_capsule/data/prism/volume_1.zarr/enhanced"
+labels = "/data/data6/vijay/sparsity_capsule/data/prism/volume_1.zarr/sparse_labels"
+mask = "/data/data6/vijay/sparsity_capsule/data/prism/volume_1.zarr/sparse_labels_mask"
+

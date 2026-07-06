@@ -1,0 +1,37 @@
+numpy==2.2.6
+scipy==1.17.0
+scikit-image==0.26.0
+numba==0.63.1
+llvmlite==0.46.0
+edt==3.1.0
+networkx==3.6.1
+torch==2.10.0
+tensorboardX==2.6.4
+zarr==2.18.7
+numcodecs==0.15.1
+tensorstore==0.1.81
+daisy==1.2.2
+funlib.geometry==0.3.0
+funlib.math==0.1
+funlib.persistence==0.6.1
+gunpowder @ git+https://github.com/funkelab/gunpowder.git@6571d02031875c9e627c5c3f8891af73b4de602b
+funlib.learn.torch @ git+https://github.com/funkelab/funlib.learn.torch@228e15f41d755ee5c7e50cfaa26f7ed5110b55e4
+funlib.segment @ git+https://github.com/funkelab/funlib.segment@cdf607f0bde3b27f16cec39b9874e266be80bda9
+funlib.evaluate @ git+https://github.com/yajivunev/funlib.evaluate@17602798f3e39cd437abcb7b4693b54d8bb4c54c
+lsds @ git+https://github.com/yajivunev/lsd@082ebe648abbd58811de125adaa5d4edb58e550b
+mwatershed==0.5.4
+waterz @ git+https://github.com/funkey/waterz.git@a0184d2af2ab3ed044721fb92822fc6ea9cee665
+h5py==3.15.1
+tifffile==2025.5.10
+imagecodecs==2026.1.14
+pillow==12.2.0
+requests==2.32.5
+tqdm==4.67.1
+click==8.3.3
+toml==0.10.2
+neuroglancer==2.41.2
+volara==1.0.3
+pydantic==2.12.5
+polars==1.37.1
+cloud-volume==12.9.2
+psutil==7.2.2

@@ -1,0 +1,9 @@
+setup_dir = "/data/data6/vijay/sparsity_capsule/results/cremi_a/baseline/3d_mtlsd"
+voxel_size = [ 40, 8, 8,]
+max_iterations = 30000
+save_checkpoints_every = 5000
+save_snapshots_every = 5000
+[[samples]]
+raw = "/data/data6/vijay/sparsity_capsule/data/cremi_a/volume_2.zarr/raw"
+labels = "/data/data6/vijay/sparsity_capsule/data/cremi_a/volume_2.zarr/labels"
+

@@ -1,0 +1,6 @@
+out_result_dir = "/data/data6/vijay/sparsity_capsule/results/epi/bootstrap/epi.zarr/3d_mtlsd/50000"
+out_result = "/data/data6/vijay/sparsity_capsule/results/epi/bootstrap/epi.zarr/3d_mtlsd/50000/results_gt_epi.json"
+seg_datasets_prefix = "/data/data6/vijay/sparsity_capsule/results/epi/bootstrap/epi.zarr/3d_mtlsd/50000/segmentations_mws"
+
+[gt]
+labels_dataset = "/data/data6/vijay/sparsity_capsule/data/epi/volume_1.zarr/labels"

@@ -1,0 +1,9 @@
+setup_dir = "/data/data6/vijay/sparsity_capsule/results/epi/bootstrap/3d_mtlsd"
+voxel_size = [ 235, 75, 75,]
+max_iterations = 50000
+save_checkpoints_every = 5000
+save_snapshots_every = 5000
+[[samples]]
+raw = "/data/data6/vijay/sparsity_capsule/data/epi/volume_2.zarr/raw"
+labels = "/data/data6/vijay/sparsity_capsule/results/epi/pgt/epi.zarr/3Af2L/25000--from--2d_mtlsd_40000/pseudo_gt_ids_mws/mean--0.06--minseed5"
+mask = "/data/data6/vijay/sparsity_capsule/results/epi/pgt/epi.zarr/3Af2L/25000--from--2d_mtlsd_40000/pseudo_gt_mask_mws/mean--0.06--minseed5"

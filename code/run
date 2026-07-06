@@ -1,0 +1,72 @@
+#!/usr/bin/env bash
+# Run the sparsity capsule.
+#
+#   ./code/run               cremi_a (the quick demo)
+#   ./code/run all           every dataset
+#   ./code/run cremi_c epi   one or more named datasets
+
+set -uo pipefail
+
+CAP="$(cd "$(dirname "$0")/.." && pwd)"
+cd "$CAP"
+export OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1
+
+# The committed tomls carry absolute paths under the dev capsule root below.
+# Rewrite that prefix to THIS run's root ($CAP) when staging each setup, so the
+# configs are portable. Locally $CAP == DEV_ROOT (a no-op). On Code Ocean the
+# capsule mounts at / (code->/code, data->/data, results->/results), so $CAP is
+# / and the paths become /code, /data, /results. ${CAP%/} drops the trailing
+# slash so "/" maps cleanly (no "//data").
+DEV_ROOT="/data/data6/vijay/sparsity_capsule"
+RUN_ROOT="${CAP%/}"
+
+command -v bs >/dev/null || { echo "error: 'bs' not on PATH (activate the bootstrapper env)"; exit 1; }
+
+ALL="cremi_a cremi_b cremi_c epi fib harris15 liconn mitoem cremi_clefts fluo prism"
+case "${1:-demo}" in
+  demo) datasets="cremi_a" ;;
+  all)  datasets="$ALL" ;;
+  *)    datasets="$*" ;;
+esac
+
+for d in $datasets; do
+  [ -d "code/setups/$d" ] || { echo "skip $d: no setup at code/setups/$d"; continue; }
+  log="results/$d.log"; mkdir -p results; : > "$log"
+  for t in pgt bootstrap baseline; do
+    [ -d "code/setups/$d/$t" ] || continue
+    echo "===== $d / $t =====" | tee -a "$log"
+    rm -rf "results/$d/$t"
+    mkdir -p "results/$d"
+    cp -r "code/setups/$d/$t" "results/$d/$t"
+    # Make the staged configs portable (see DEV_ROOT/RUN_ROOT above).
+    if [ "$RUN_ROOT" != "$DEV_ROOT" ]; then
+      find "results/$d/$t" -name '*.toml' -print0 \
+        | xargs -0 sed -i "s#${DEV_ROOT}#${RUN_ROOT}#g"
+    fi
+    # train.py asserts config["setup_dir"] is a substring of realpath(__file__),
+    # which resolves symlinks. On capsules where results/ is a symlink (Code Ocean),
+    # the logical setup_dir above would not match. Resolve it to the real path.
+    for toml in results/"$d"/"$t"/run/01_train_*.toml; do
+      [ -e "$toml" ] || continue
+      sd="$(sed -n 's/^setup_dir = "\(.*\)"/\1/p' "$toml" | head -n1)"
+      if [ -n "$sd" ] && [ -e "$sd" ]; then
+        rsd="$(realpath "$sd")"
+        [ "$sd" != "$rsd" ] && sed -i "s#^setup_dir = \".*\"#setup_dir = \"$rsd\"#" "$toml"
+      fi
+    done
+    for toml in results/"$d"/"$t"/run/*.toml; do
+      echo "----- bs run $toml -----" | tee -a "$log"
+      if ! bs run "$toml" 2>&1 | tee -a "$log"; then
+        echo "FAILED: $toml (skipping rest of $d)" | tee -a "$log"
+        break 2
+      fi
+      # fill interior holes in the segmentation before it is evaluated (lowers NVI
+      # on every dataset; optional size filter merges background fragments)
+      case "$toml" in
+        *03_seg*) python code/post_fill.py "$toml" 2>&1 | tee -a "$log" ;;
+      esac
+    done
+  done
+done
+
+python code/collect_results.py

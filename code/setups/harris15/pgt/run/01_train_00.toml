@@ -1,0 +1,10 @@
+setup_dir = "/data/data6/vijay/sparsity_capsule/results/harris15/pgt/2d_mtlsd"
+voxel_size = [ 50, 8, 8,]
+max_iterations = 40000
+save_checkpoints_every = 5000
+save_snapshots_every = 5000
+[[samples]]
+raw = "/data/data6/vijay/sparsity_capsule/data/harris15/volume_1.zarr/raw"
+labels = "/data/data6/vijay/sparsity_capsule/data/harris15/volume_1.zarr/dense2d_labels"
+mask = "/data/data6/vijay/sparsity_capsule/data/harris15/volume_1.zarr/dense2d_mask"
+

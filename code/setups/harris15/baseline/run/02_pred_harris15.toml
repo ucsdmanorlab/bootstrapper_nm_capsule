@@ -1,0 +1,10 @@
+[01-3d_mtlsd]
+setup_dir = "/data/data6/vijay/sparsity_capsule/results/harris15/baseline/3d_mtlsd"
+input_datasets = [ "/data/data6/vijay/sparsity_capsule/data/harris15/volume_1.zarr/raw",]
+roi_offset = [ 2950, 4480, 4752,]
+roi_shape = [ 5050, 7208, 7424,]
+checkpoint = "/data/data6/vijay/sparsity_capsule/results/harris15/baseline/3d_mtlsd/model_checkpoint_60000"
+output_datasets_prefix = "/data/data6/vijay/sparsity_capsule/results/harris15/baseline/harris15.zarr/3d_mtlsd"
+chain_str = ""
+num_workers = 1
+num_gpus = 1

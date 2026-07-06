@@ -1,0 +1,6 @@
+out_result_dir = "/data/data6/vijay/sparsity_capsule/results/cremi_a/bootstrap/cremi_a.zarr/3d_mtlsd/30000"
+out_result = "/data/data6/vijay/sparsity_capsule/results/cremi_a/bootstrap/cremi_a.zarr/3d_mtlsd/30000/results_gt_cremi_a.json"
+seg_datasets_prefix = "/data/data6/vijay/sparsity_capsule/results/cremi_a/bootstrap/cremi_a.zarr/3d_mtlsd/30000/segmentations_mws"
+
+[gt]
+labels_dataset = "/data/data6/vijay/sparsity_capsule/data/cremi_a/volume_1.zarr/labels"

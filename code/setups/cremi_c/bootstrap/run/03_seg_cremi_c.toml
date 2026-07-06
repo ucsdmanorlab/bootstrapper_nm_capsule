@@ -1,0 +1,17 @@
+affs_dataset = "/data/data6/vijay/sparsity_capsule/results/cremi_c/bootstrap/cremi_c.zarr/3d_mtlsd/30000/3d_affs"
+fragments_dataset = "/data/data6/vijay/sparsity_capsule/results/cremi_c/bootstrap/cremi_c.zarr/3d_mtlsd/30000/fragments_mws"
+lut_dir = "/data/data6/vijay/sparsity_capsule/results/cremi_c/bootstrap/cremi_c.zarr/3d_mtlsd/30000/luts_mws"
+seg_dataset_prefix = "/data/data6/vijay/sparsity_capsule/results/cremi_c/bootstrap/cremi_c.zarr/3d_mtlsd/30000/segmentations_mws"
+blockwise = false
+num_workers = 1
+
+fill_holes = true
+[mws_params]
+aff_neighborhood = [ [ -1, 0, 0,], [ 0, -1, 0,], [ 0, 0, -1,], [ -2, 0, 0,], [ 0, -9, 0,], [ 0, 0, -9,], [ -3, 0, 0,], [ 0, -27, 0,], [ 0, 0, -27,],]
+bias = [ -0.5, -0.5, -0.5, -0.8, -0.8, -0.8, -0.8, -0.8, -0.8,]
+noise_eps = 0.001
+strides = [ [ 1, 1, 1,], [ 1, 1, 1,], [ 1, 1, 1,], [ 2, 9, 9,], [ 2, 9, 9,], [ 2, 9, 9,], [ 3, 27, 27,], [ 3, 27, 27,], [ 3, 27, 27,],]
+randomized_strides = true
+filter_fragments = 0.1
+remove_debris = 64
+seed_eps = 0.01

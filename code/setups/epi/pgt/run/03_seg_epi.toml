@@ -1,0 +1,13 @@
+affs_dataset = "/data/data6/vijay/sparsity_capsule/results/epi/pgt/epi.zarr/3Af2L/25000--from--2d_mtlsd_40000/3d_affs"
+fragments_dataset = "/data/data6/vijay/sparsity_capsule/results/epi/pgt/epi.zarr/3Af2L/25000--from--2d_mtlsd_40000/fragments_mws"
+seg_dataset_prefix = "/data/data6/vijay/sparsity_capsule/results/epi/pgt/epi.zarr/3Af2L/25000--from--2d_mtlsd_40000/segmentations_mws"
+blockwise = false
+num_workers = 1
+
+fill_holes = true
+fill_size_filter = 5000
+[ws_params]
+merge_function = "mean"
+thresholds = [ 0.06,]
+min_seed_distance = 5
+fragments_in_xy = true

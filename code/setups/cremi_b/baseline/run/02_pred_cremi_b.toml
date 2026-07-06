@@ -1,0 +1,10 @@
+[01-3d_mtlsd]
+setup_dir = "/data/data6/vijay/sparsity_capsule/results/cremi_b/baseline/3d_mtlsd"
+input_datasets = [ "/data/data6/vijay/sparsity_capsule/data/cremi_b/volume_1.zarr/raw",]
+roi_offset = [ 0, 0, 0,]
+roi_shape = [ 2480, 5000, 5000,]
+checkpoint = "/data/data6/vijay/sparsity_capsule/results/cremi_b/baseline/3d_mtlsd/model_checkpoint_30000"
+output_datasets_prefix = "/data/data6/vijay/sparsity_capsule/results/cremi_b/baseline/cremi_b.zarr/3d_mtlsd"
+chain_str = ""
+num_workers = 1
+num_gpus = 1
