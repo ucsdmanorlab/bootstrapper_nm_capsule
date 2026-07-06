@@ -1,4 +1,4 @@
-# Sparsity: bootstrapping dense 3D segmentation from sparse 2D annotation
+# Bootstrapper NM capsule
 
 Reproduction of "A general method for bootstrapping dense 3D segmentations from
 sparse 2D annotations". The capsule turns sparse 2D
@@ -46,6 +46,28 @@ cremi_c, epi, fib, harris15**. Five are single-volume extras that run pgt only:
 | fluo | fluorescence, 2D+time | 1, 1, 1 | pgt |
 | prism | PRISM expansion LM, 18-channel | 400, 168, 168 | pgt |
 
+## Setup
+
+The code and the pretrained 2D->3D corrector checkpoints (stored with
+[Git LFS](https://git-lfs.com)) live in this repo. The dataset volumes (~3.9 GB)
+are archived separately on [Zenodo](https://zenodo.org/records/21223591) and
+fetched with a script:
+
+```bash
+git clone https://github.com/ucsdmanorlab/bootstrapper_nm_capsule.git
+cd bootstrapper_nm_capsule
+git lfs pull          # fetch the corrector checkpoints (code/nets/3d_affs_from_2d_*/)
+./download_data.sh    # download data.tar from Zenodo and unpack it into data/
+```
+
+Build the environment from `environment/` (pinned `requirements.txt`) and activate
+it so the `bs` CLI is on PATH. Optional fast end-to-end check of every stage and
+track before a full run:
+
+```bash
+./code/smoke_test.sh cremi_a
+```
+
 ## Running
 
 ```bash
@@ -65,12 +87,14 @@ When it finishes it writes `results/summary.md` and `results/summary.json`.
 code/
   run                     driver (the only orchestration; plain shell, no config generation)
   collect_results.py      reads the run's eval JSONs into results/summary.{md,json}
-  nets/                   pretrained 2D->3D correctors (recipe + one checkpoint each):
+  smoke_test.sh           fast end-to-end sanity check (every stage, every track)
+  nets/                   pretrained 2D->3D correctors (recipe + one checkpoint each, via Git LFS):
     3d_affs_from_2d_{aff,aff_6ch,lsd_epi,lsd_fine,mtlsd}/
   setups/<dataset>/<track>/   one self-contained `bs run` setup
     {2d_mtlsd|3d_mtlsd}/   the net recipe (model, unet, net_config, train, predict)
     run/                   01_train, 02_pred, 03_seg, 04_eval, (05_filter for pgt)
-data/<dataset>/volume_{1,2}.zarr/{raw,labels,sparse_labels}   the volumes
+download_data.sh          fetch + unpack the volumes from Zenodo into data/
+data/<dataset>/volume_{1,2}.zarr/{raw,labels,sparse_labels}   the volumes (Zenodo; /data on Code Ocean)
 environment/              Dockerfile + pinned requirements
 results/                  run outputs land here; a run writes summary.{md,json}
 metadata/metadata.yml     Code Ocean metadata
@@ -103,11 +127,15 @@ Each track segments once, at the operating point that was best for that dataset
 
 ## Data
 
-All datasets are publicly available and consolidated here for simplicity. 
-The volumes are under `data/` as zarr arrays. The core
-datasets are at `volume_1.zarr/{raw,labels,sparse_labels}` and
-`volume_2.zarr/{raw,labels}`; pgt-only datasets have only `volume_1.zarr` with an added
-`sparse_labels_mask`.
+The dataset volumes are **not** stored in git. They are publicly available,
+consolidated into a single archive (`data.tar`, ~3.9 GB), and hosted on
+[Zenodo](https://zenodo.org/records/21223591). `./download_data.sh` downloads it
+and unpacks it into `data/`. On Code Ocean the same volumes are attached as a
+Data Asset mounted at `/data`, so the script is not needed there.
+
+Once unpacked, each volume is a zarr array: core datasets have
+`volume_1.zarr/{raw,labels,sparse_labels}` and `volume_2.zarr/{raw,labels}`;
+pgt-only datasets have only `volume_1.zarr` (plus an added `sparse_labels_mask`).
 
 
 
