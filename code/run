@@ -4,6 +4,14 @@
 #   ./code/run               cremi_a (the quick demo)
 #   ./code/run all           every dataset
 #   ./code/run cremi_c epi   one or more named datasets
+#
+# By default only the pgt track runs (the sparse-2D->3D pseudo-GT step, the
+# novel part). The bootstrap/baseline 3D models train slowly, so they are opt-in:
+#
+#   ./code/run --full all    every dataset, all three tracks (pgt/bootstrap/baseline)
+#   ./code/run --full epi    one dataset, all three tracks
+#
+# The bootstrap/baseline setups always stay in code/setups/; --full just runs them.
 
 set -uo pipefail
 
@@ -22,6 +30,14 @@ RUN_ROOT="${CAP%/}"
 
 command -v bs >/dev/null || { echo "error: 'bs' not on PATH (activate the bootstrapper env)"; exit 1; }
 
+# Default to the pgt track only (fast enough for the Code Ocean container).
+# --full adds the slow 3D bootstrap/baseline tracks (used for the full GitHub run).
+TRACKS="pgt"
+if [ "${1:-}" = "--full" ]; then
+  TRACKS="pgt bootstrap baseline"
+  shift
+fi
+
 ALL="cremi_a cremi_b cremi_c epi fib harris15 liconn mitoem cremi_clefts fluo prism"
 case "${1:-demo}" in
   demo) datasets="cremi_a" ;;
@@ -32,7 +48,7 @@ esac
 for d in $datasets; do
   [ -d "code/setups/$d" ] || { echo "skip $d: no setup at code/setups/$d"; continue; }
   log="results/$d.log"; mkdir -p results; : > "$log"
-  for t in pgt bootstrap baseline; do
+  for t in $TRACKS; do
     [ -d "code/setups/$d/$t" ] || continue
     echo "===== $d / $t =====" | tee -a "$log"
     rm -rf "results/$d/$t"

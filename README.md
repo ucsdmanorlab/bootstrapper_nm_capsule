@@ -28,6 +28,10 @@ Three tracks, scored against dense ground truth with NVI (lower is better):
 
 A run writes the held-out NVI numbers to `results/summary.md`.
 
+> The Code Ocean reproducible run executes the **pgt** track only (see Running).
+> Use `./code/run --full ...`, or run the full pipeline from the GitHub repo, to
+> also train the bootstrap and baseline 3D models.
+
 ## Datasets
 
 Six datasets have two volumes and run all three tracks: **cremi_a, cremi_b,
@@ -71,15 +75,29 @@ track before a full run:
 ## Running
 
 ```bash
-./code/run               # cremi_a (the quick demo)
-./code/run all           # every dataset
-./code/run cremi_c epi   # one or more named datasets
+./code/run               # cremi_a, pgt track only (the quick demo)
+./code/run all           # every dataset, pgt track only
+./code/run cremi_c epi   # named datasets, pgt track only
 ```
 
-The driver stages each setup into `results/` and runs its stages in order.
-For full datasets it runs pgt, then bootstrap (which trains on the pgt), then baseline. 
-Each invocation re-stages and re-runs from scratch. 
-When it finishes it writes `results/summary.md` and `results/summary.json`.
+The reproducible run does only the pgt track: the sparse-2D-to-3D
+pseudo-ground-truth step, which is the method's novel contribution. The 3D
+bootstrap and baseline models can train slowly, so they are left out of the default
+run.
+
+The bootstrap and baseline setups are still in the capsule
+(code/setups/<dataset>/{bootstrap,baseline}/). To run the full sequence (pgt,
+then bootstrap trained on the pgt, then baseline on dense ground truth), add
+--full:
+
+`./code/run --full all`        # every dataset, all three tracks
+`./code/run --full cremi_a`    # one dataset, all three tracks
+
+The driver stages each setup into results/ and runs its stages in order. Each
+invocation re-stages and re-runs from scratch. When it finishes it writes
+results/summary.md and results/summary.json. The pgt column is always filled;
+the bootstrap/baseline columns and their gap appear only under `--full`.
+
 
 ## Layout
 
